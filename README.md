@@ -68,7 +68,7 @@ def handle_url(file):
                 print('web：%s' % line)
                 with open('url/web.txt', 'a') as f1:
                     f1.write(line)
-            elif line.__contains__('ntyytech-java'):
+            elif line.__contains__('java'):
                 print('java：%s' % line)
                 with open('url/java.txt', 'a') as f1:
                     f1.write(line)
@@ -86,7 +86,7 @@ def create_android_projects():
     """
     取出android.txt中要创建的项目名称，调用api开始批量创建项目
     """
-    with open('handle/java/taoke.txt', 'r') as f:
+    with open('handle/java/tk.txt', 'r') as f:
         readlines = f.readlines()
         print(readlines)
         for line in readlines:
