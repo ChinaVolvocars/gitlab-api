@@ -1,15 +1,42 @@
-# 使用gitlab api批量创建1000个新的项目
+# 这是一个示例 Python 脚本。
 
-
-
-
-
-
-```py
+# 按 Shift+F10 执行或将其替换为您的代码。
+# 按 Double Shift 在所有地方搜索类、文件、工具窗口、操作和设置。
 import os
 
-import requests
 from bs4 import BeautifulSoup
+
+import requests
+
+
+def get_title_html(html_1):
+    soup = BeautifulSoup(html_1, "html.parser")
+    title_url_date = soup.find('div', class_='clearfix dirconone').find_all('li')
+    for i in title_url_date:
+        # print(i)
+        url = i.find('a')['href']
+        print(url)
+
+
+def generate_git_url():
+    entries = os.listdir('C:\\Users\\admin\\Desktop\\Gitee\\android')
+    for entry in entries:
+        print(entry)
+        with open('data.txt', 'a') as f:
+            data = 'ssh://git@xx.xx.xx.xx:1022/android/' + entry.__str__() + '\n'
+            f.write(data)
+
+
+def generate_git_url1():
+    with open('url/android.txt') as f:
+        lines = f.readlines()
+        for line in lines:
+            print(line)
+            l = line.replace('http://xx.xx.com/gitlab/android/', '').replace('.git', '')
+            print(l)
+            with open('handle/android.txt', 'a') as f1:
+                f1.write(l)
+
 
 android = 6
 ios = 7
@@ -33,6 +60,7 @@ headers = {
 }
 
 api_projects = 'api/v4/projects/'
+
 
 def api_create_project(new_project_name, namespace_id):
     """
@@ -97,6 +125,5 @@ def create_android_projects():
 
 if __name__ == '__main__':
     create_android_projects()
-
-
-```
+    # handle_url('data1.txt')
+    # generate_git_url1()
